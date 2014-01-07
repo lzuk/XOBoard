@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Kolko_i_krzyzyk
+﻿namespace Kolko_i_krzyzyk
 {
-    class Player
+    public class Player
     {
         public static Player Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Player();
-                }
-                return instance;
-            }
+            get { return instance ?? (instance = new Player()); }
         }
         public void ChangePlayer()
         {

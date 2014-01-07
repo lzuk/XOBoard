@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Kolko_i_krzyzyk
 {
-    enum FieldStatus
+    public enum FieldStatus
     {
         X,
         O,

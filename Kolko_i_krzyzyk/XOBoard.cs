@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Kolko_i_krzyzyk
 {
@@ -10,14 +6,7 @@ namespace Kolko_i_krzyzyk
     {
         public static XOBoard Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new XOBoard();
-                }
-                return instance;
-            }
+            get { return instance ?? (instance = new XOBoard()); }
         }
 
         public Field[,] Board = new Field[3, 3];
@@ -32,7 +21,7 @@ namespace Kolko_i_krzyzyk
                         if (Board[location.wiersz, location.kolumna].FieldStatus == FieldStatus.Empty)
                         {
                             Board[location.wiersz, location.kolumna].FieldStatus = Player.Instance.ActualPlayer;
-                            (sender as Button).Text = Player.Instance.ActualPlayer.ToString();
+                            ((Button) sender).Text = Player.Instance.ActualPlayer.ToString();
                             Player.Instance.ChangePlayer();
                         }
                     };
@@ -49,7 +38,8 @@ namespace Kolko_i_krzyzyk
                     Board[wiersz, kolumna].Button.Text = "Click me!";
                     Board[wiersz, kolumna].FieldStatus = FieldStatus.Empty;
                 }
-            }          
+            }
+            ConsoleHandler.RedrawConsole();
         }
 
         private Location findLocationInBoard(object button)

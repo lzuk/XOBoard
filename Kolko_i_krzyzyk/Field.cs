@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Kolko_i_krzyzyk
 {
@@ -10,10 +6,10 @@ namespace Kolko_i_krzyzyk
     {
         public Field(Button button)
         {
-            this.Button = button;
-            FieldStatus = Kolko_i_krzyzyk.FieldStatus.Empty;
+            Button = button;
+            FieldStatus = FieldStatus.Empty;
         }
-        public Button Button { get; set; }
+        public Button Button { get; private set; }
         public FieldStatus FieldStatus { get; set; }
     }
 }

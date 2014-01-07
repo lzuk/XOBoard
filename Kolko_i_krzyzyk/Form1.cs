@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using Kolko_i_krzyzyk.Properties;
 
 namespace Kolko_i_krzyzyk
 {
@@ -15,11 +10,22 @@ namespace Kolko_i_krzyzyk
         {
             InitializeComponent();
             Board = XOBoard.Instance;
-            connectButtonsWithTable();
-            Player.Instance.Changed += (FieldStatus actualPlayer) => { label1.Text = "Aktualny gracz: " + actualPlayer.ToString(); };    
+            ConnectButtonsWithTable();
+            Player.Instance.Changed += actualPlayer =>
+            {
+                if (label1.InvokeRequired)
+                {
+                    label1.Invoke(new Action(() => label1.Text = Resources.Form1_Form1_Aktualny_gracz__ + actualPlayer));
+                }
+                else
+                {
+                    label1.Text = Resources.Form1_Form1_Aktualny_gracz__ + actualPlayer.ToString();
+                }   
+            };    
         }
+
         private XOBoard Board;
-        private void connectButtonsWithTable()
+        private void ConnectButtonsWithTable()
         {
             Board.Board[0, 0] = new Field(button00);
             Board.Board[0, 1] = new Field(button01);
@@ -40,7 +46,7 @@ namespace Kolko_i_krzyzyk
         {
             Player.Instance.RestartGame();
             Board.RestartGame();
-            connectButtonsWithTable();
+            ConnectButtonsWithTable();
         }
     }
 }
