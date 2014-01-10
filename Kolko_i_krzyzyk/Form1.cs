@@ -13,7 +13,24 @@ namespace Kolko_i_krzyzyk
             ConnectButtonsWithTable();
             Player.Instance.Changed += actualPlayer =>
             {
-                label1.Text = Resources.Form1_Form1_Aktualny_gracz__ + actualPlayer.ToString(); 
+                if (label1.InvokeRequired)
+                {
+                    label1.Invoke(new Action(() => label1.Text = Resources.Form1_Form1_Aktualny_gracz__ + actualPlayer));
+                    for (int wiersz = 0; wiersz < 3; wiersz++) // w tym miejscu będziemy przeglądać pierwszy wymiar tablicy (wiersze)
+                    {
+                        for (int kolumna = 0; kolumna < 3; kolumna++) // ta pętla przegląda elementy w danym wierszu
+                        {
+                            if (Board.Board[wiersz, kolumna].FieldStatus != FieldStatus.Empty)
+                            {
+                                Board.Board[wiersz, kolumna].Button.Invoke(
+                                    new Action(() => Board.Board[wiersz, kolumna].Button.Text 
+                                        = Board.Board[wiersz, kolumna].FieldStatus.ToString()));
+                            }
+                        }
+                    }
+
+                }
+
             };
             Instance = this;
         }

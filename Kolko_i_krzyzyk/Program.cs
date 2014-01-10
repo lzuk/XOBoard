@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kolko_i_krzyzyk.Properties;
 
@@ -12,27 +14,29 @@ namespace Kolko_i_krzyzyk
         [STAThread]
         static void Main()
         {
-            Logic.Algorithm = Algorithms.FirstAvailable;
-            IsConsole = true;
-            if (IsConsole)
-            {
-                RunConsole();
-                Console.ReadKey();
-            }
-            else
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
-            }
+            Logic.Algorithm = Algorithms.RandomAvailable;
+            Task csForm = new Task(RunCsForm);
+            csForm.Start();
+            Thread.Sleep(1000);
+            RunConsole();
+            Console.ReadKey();
         }
+        static void RunCsForm()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            xoForm1 = new Form1();
+            Task xoTask = new Task(() => Application.Run(xoForm1));
+            xoTask.Start();
+        }
+
+        private static Form1 xoForm1;
         static void RunConsole()
         {
+            Player.Instance.Changed += player => ConsoleHandler.PrepareConsole();
+            ConsoleHandler.PrepareConsole();
             while (true)
             {
-                ConsoleHandler.RedrawConsole();
-                ConsoleHandler.WriteXOBoard();
-                ConsoleHandler.WriteInstructions();
                 Location location = ConsoleHandler.HandleCommunications();
                 {
                     try

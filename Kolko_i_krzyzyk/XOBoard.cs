@@ -38,11 +38,7 @@ namespace Kolko_i_krzyzyk
             }
             else
             {
-                if (!Program.IsConsole)
-                {
-                    Board[location.wiersz, location.kolumna].Button.PerformClick();
-                }
-                Board[location.wiersz, location.kolumna].FieldStatus = FieldStatus.O;
+                Board[location.wiersz, location.kolumna].Button.PerformClick();                
             }
         }
 
@@ -52,17 +48,13 @@ namespace Kolko_i_krzyzyk
             {
                 for (int kolumna = 0; kolumna < 3; kolumna++) // ta pętla przegląda elementy w danym wierszu
                 {
-                    if (!Program.IsConsole)
-                    {
-                        Board[wiersz, kolumna].Button.Text = "Click me!";
-                    } 
+
+                    Board[wiersz, kolumna].Button.Text = "Click me!";
                     Board[wiersz, kolumna].FieldStatus = FieldStatus.Empty;
                 }
             }
-            if (Program.IsConsole)
-            {
-                ConsoleHandler.RedrawConsole();
-            }
+            ConsoleHandler.PrepareConsole();
+
         }
 
         private Location findLocationInBoard(object button)

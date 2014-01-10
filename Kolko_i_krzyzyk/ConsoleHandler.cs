@@ -40,5 +40,12 @@ namespace Kolko_i_krzyzyk
         {
             Console.Clear();
         }
+
+        public static void PrepareConsole()
+        {
+            RedrawConsole();
+            WriteXOBoard();
+            WriteInstructions();
+        }
     }
 }
