@@ -68,5 +68,14 @@ namespace Kolko_i_krzyzyk.Properties {
                 return ResourceManager.GetString("Form1_Form1_Aktualny_gracz__", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Program_RunConsole_Error {
+            get {
+                return ResourceManager.GetString("Program_RunConsole_Error", resourceCulture);
+            }
+        }
     }
 }
