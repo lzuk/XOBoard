@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Windows.Forms;
 
 namespace Kolko_i_krzyzyk
 {
     static class ConsoleHandler
     {
-        static void WriteXOBoard(){
+        public static void WriteXOBoard(){
             XOBoard xoboard = XOBoard.Instance;
             for (int wiersz = 0; wiersz < 3; wiersz++) // w tym miejscu będziemy przeglądać pierwszy wymiar tablicy (wiersze)
             {
@@ -19,13 +18,12 @@ namespace Kolko_i_krzyzyk
             }
 
         }
-        static void WriteInstructions()
+        public static void WriteInstructions()
         {
             Console.WriteLine("Instructions:");
             Console.WriteLine("X - Player");
             Console.WriteLine("O - Computer");
-            Console.WriteLine("- - Empty field");
-            
+            Console.WriteLine("- - Empty field");           
         }
         public static Location HandleCommunications()
         {
@@ -41,10 +39,6 @@ namespace Kolko_i_krzyzyk
         public static void RedrawConsole()
         {
             Console.Clear();
-            WriteXOBoard();
-            Console.WriteLine();
-            WriteInstructions();
-            Console.WriteLine();
         }
     }
 }

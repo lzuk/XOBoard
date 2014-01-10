@@ -9,7 +9,7 @@ namespace Kolko_i_krzyzyk
             get { return instance ?? (instance = new XOBoard()); }
         }
 
-        public Field[,] Board = new Field[3, 3];
+        public Field[,] Board;
         public void AssignEventsToButton()
         {
             for (int wiersz = 0; wiersz < 3; wiersz++) // w tym miejscu będziemy przeglądać pierwszy wymiar tablicy (wiersze)
@@ -35,11 +35,17 @@ namespace Kolko_i_krzyzyk
             {
                 for (int kolumna = 0; kolumna < 3; kolumna++) // ta pętla przegląda elementy w danym wierszu
                 {
-                    Board[wiersz, kolumna].Button.Text = "Click me!";
+                    if (!Program.IsConsole)
+                    {
+                        Board[wiersz, kolumna].Button.Text = "Click me!";
+                    } 
                     Board[wiersz, kolumna].FieldStatus = FieldStatus.Empty;
                 }
             }
-            ConsoleHandler.RedrawConsole();
+            if (Program.IsConsole)
+            {
+                ConsoleHandler.RedrawConsole();
+            }
         }
 
         private Location findLocationInBoard(object button)
@@ -60,6 +66,15 @@ namespace Kolko_i_krzyzyk
         private static XOBoard instance = null;
         private XOBoard()
         {
+            Board = new Field[3, 3];
+
+            for (int wiersz = 0; wiersz < 3; wiersz++) // w tym miejscu będziemy przeglądać pierwszy wymiar tablicy (wiersze)
+            {
+                for (int kolumna = 0; kolumna < 3; kolumna++) // ta pętla przegląda elementy w danym wierszu
+                {
+                    Board[wiersz, kolumna] = new Field();
+                }
+            }
         }
     }
     class Location

@@ -4,12 +4,11 @@ namespace Kolko_i_krzyzyk
 {
     class Field
     {
-        public Field(Button button)
+        public Field()
         {
-            Button = button;
             FieldStatus = FieldStatus.Empty;
         }
-        public Button Button { get; private set; }
+        public Button Button { get; set; }
         public FieldStatus FieldStatus { get; set; }
     }
 }
