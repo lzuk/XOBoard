@@ -11,6 +11,9 @@
             if (ActualPlayer == FieldStatus.X)
             {
                 ActualPlayer = FieldStatus.O;
+                XOBoard.Instance.HandleAIPlayer();
+                OnChanged(ActualPlayer);
+                ActualPlayer = FieldStatus.X;
             }
             else
             {

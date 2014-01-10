@@ -12,6 +12,7 @@ namespace Kolko_i_krzyzyk
         [STAThread]
         static void Main()
         {
+            Logic.Algorithm = Algorithms.FirstAvailable;
             IsConsole = true;
             if (IsConsole)
             {
@@ -24,7 +25,6 @@ namespace Kolko_i_krzyzyk
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
-
         }
         static void RunConsole()
         {

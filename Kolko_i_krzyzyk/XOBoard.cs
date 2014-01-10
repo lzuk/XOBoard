@@ -29,6 +29,23 @@ namespace Kolko_i_krzyzyk
             }
         }
 
+        public void HandleAIPlayer()
+        {
+            Location location = Logic.Location();
+            if (location.kolumna == -1 && location.wiersz == -1)
+            {
+                MessageBox.Show("Game over");
+            }
+            else
+            {
+                if (!Program.IsConsole)
+                {
+                    Board[location.wiersz, location.kolumna].Button.PerformClick();
+                }
+                Board[location.wiersz, location.kolumna].FieldStatus = FieldStatus.O;
+            }
+        }
+
         public void RestartGame()
         {
             for (int wiersz = 0; wiersz < 3; wiersz++) // w tym miejscu będziemy przeglądać pierwszy wymiar tablicy (wiersze)
@@ -77,7 +94,8 @@ namespace Kolko_i_krzyzyk
             }
         }
     }
-    class Location
+
+    public class Location
     {
         public Location(int wiersz, int kolumna)
         {
