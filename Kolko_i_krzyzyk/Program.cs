@@ -19,7 +19,6 @@ namespace Kolko_i_krzyzyk
             csForm.Start();
             Thread.Sleep(1000);
             RunConsole();
-            Console.ReadKey();
         }
         static void RunCsForm()
         {
@@ -48,9 +47,10 @@ namespace Kolko_i_krzyzyk
                             Player.Instance.ChangePlayer();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         Console.WriteLine(Resources.Program_RunConsole_Error);
+                        Console.WriteLine(e.ToString());
                         Console.ReadKey();
                     }
                 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace Kolko_i_krzyzyk
 {
@@ -38,7 +39,15 @@ namespace Kolko_i_krzyzyk
             }
             else
             {
-                Board[location.wiersz, location.kolumna].Button.PerformClick();                
+                if (Board[location.wiersz, location.kolumna].Button.InvokeRequired)
+                {
+                    Board[location.wiersz, location.kolumna].Button.Invoke(
+                        new Action(() => Board[location.wiersz, location.kolumna].Button.PerformClick()));
+                }
+                else
+                {
+                    Board[location.wiersz, location.kolumna].Button.PerformClick();
+                }                
             }
         }
 
