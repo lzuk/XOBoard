@@ -50,7 +50,6 @@ namespace Kolko_i_krzyzyk
                     catch (Exception e)
                     {
                         Console.WriteLine(Resources.Program_RunConsole_Error);
-                        Console.WriteLine(e.ToString());
                         Console.ReadKey();
                     }
                 }

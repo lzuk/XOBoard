@@ -23,10 +23,22 @@ namespace Kolko_i_krzyzyk
             Console.WriteLine("Instructions:");
             Console.WriteLine("X - Player");
             Console.WriteLine("O - Computer");
-            Console.WriteLine("- - Empty field");           
+            Console.WriteLine("- - Empty field");    
+            Console.WriteLine("Actual AI method: " + Logic.Algorithm);
         }
         public static Location HandleCommunications()
         {
+            Console.WriteLine("Press space to change logic, press enter to skip");
+            string selection = Console.ReadLine();
+
+                if (selection.StartsWith(" "))
+                {
+                    Logic.Algorithm = Logic.Algorithm == Algorithms.FirstAvailable
+                        ? Algorithms.RandomAvailable : Algorithms.FirstAvailable;
+
+                    Console.WriteLine("Actual AI method: " + Logic.Algorithm);
+                }
+
             Console.WriteLine("Write X coordinate 1 - 3");
             string msgX = Console.ReadLine();
             Console.WriteLine("Write Y coordinate 1 - 3");
